@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071009">
+<title>AiNexBit Mini App</title>
+<style>
+:root{--bg:#071009;--panel:#101a12;--panel2:#152219;--line:#2d432f;--lime:#c7ff35;--lime2:#a6e91e;--text:#f4f8ef;--muted:#a0b0a1;--green:#56e7a5;--danger:#ffb0a9}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% 0%,#1b351c 0,#071009 45%);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.app{max-width:540px;margin:0 auto;min-height:100vh;padding:16px 16px 100px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:6px 0 20px}.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:25px;letter-spacing:-1px}.logo{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:var(--lime);color:#071009;font-weight:1000;font-size:25px;box-shadow:0 0 22px #c7ff3530}.brand span{color:var(--lime)}.pill{border:1px solid #3d5637;background:#142115;border-radius:22px;padding:9px 12px;color:var(--lime);font-size:12px;font-weight:800;white-space:nowrap}
+.card{background:linear-gradient(145deg,#17251a,#0c150e);border:1px solid var(--line);border-radius:23px;padding:19px;margin-bottom:14px;box-shadow:0 10px 30px #0002}.eyebrow{font-size:11px;letter-spacing:2px;color:var(--muted);font-weight:800}.balance{font-size:42px;line-height:1.1;font-weight:900;letter-spacing:-1.8px;margin:10px 0 6px}.balance small{font-size:16px;color:var(--lime);letter-spacing:0}.sub{font-size:13px;color:var(--muted)}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.btn{border:1px solid var(--line);border-radius:15px;padding:14px 12px;font-weight:850;font-size:14px;cursor:pointer;color:var(--text);background:#18251a;min-height:48px}.btn.primary{background:linear-gradient(120deg,#d8ff73,#a8ed19);color:#10200b;border:0}.btn:focus-visible,.navbtn:focus-visible{outline:2px solid var(--lime);outline-offset:2px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:14px}.stat{border:1px solid var(--line);background:#101a12;border-radius:16px;padding:12px 10px;min-width:0}.stat b{display:block;font-size:18px;color:var(--lime);margin-bottom:4px}.stat span{font-size:11px;color:var(--muted)}.sectionhead{display:flex;align-items:center;justify-content:space-between;margin:22px 2px 12px}.sectionhead h2{font-size:18px;margin:0}.sectionhead span{font-size:12px;color:var(--lime)}.task{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #273729}.task:last-child{border-bottom:0;padding-bottom:0}.taskicon{width:43px;height:43px;flex-shrink:0;display:grid;place-items:center;border-radius:13px;background:#243821;font-size:21px}.tasktext{flex:1;min-width:0}.tasktext b{font-size:14px;display:block}.tasktext small{display:block;color:var(--muted);font-size:12px;margin-top:4px}.reward{color:var(--lime);font-size:12px;font-weight:900;white-space:nowrap}.task .btn{padding:9px 11px;min-height:38px;font-size:12px}.feature{background:linear-gradient(110deg,#1b321c,#0d1710);border:1px solid #47623a;border-radius:20px;padding:16px;display:flex;align-items:center;gap:12px;margin-bottom:14px}.orb{width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 35% 25%,#f0ffab,#a3ed24 35%,#294b1d 70%);display:grid;place-items:center;color:#11210a;font-size:23px;font-weight:1000;box-shadow:0 0 20px #a6e91e35;flex-shrink:0}.feature b{display:block;font-size:14px}.feature small{color:var(--muted);font-size:12px;display:block;margin-top:5px}.view{display:none}.view.active{display:block}.formrow{margin:13px 0}.formrow label{display:block;color:var(--muted);font-size:12px;margin-bottom:7px}.formrow input,.formrow select{width:100%;padding:13px;border-radius:12px;border:1px solid var(--line);background:#08100a;color:var(--text);font:inherit;font-size:15px}.note{background:#1b2a1b;border:1px solid #344c2e;color:#c6d8c4;padding:12px;border-radius:12px;font-size:12px;line-height:1.5}.bottomnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(540px,100%);display:grid;grid-template-columns:repeat(5,1fr);gap:2px;padding:10px 8px calc(10px + env(safe-area-inset-bottom));background:#09110bf2;border-top:1px solid #2b3b2c;backdrop-filter:blur(16px);z-index:5}.navbtn{border:0;background:transparent;color:var(--muted);font-size:10px;font-weight:750;padding:7px 1px;cursor:pointer;border-radius:12px}.navbtn .ico{display:block;font-size:21px;margin-bottom:4px}.navbtn.active{color:var(--lime);background:#172316}.empty{text-align:center;padding:24px 10px;color:var(--muted);font-size:13px}.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#d8ff73;color:#10200b;padding:12px 17px;border-radius:14px;font-size:13px;font-weight:800;box-shadow:0 8px 28px #0006;display:none;z-index:10;max-width:90%;text-align:center}.mini{font-size:11px;color:var(--muted);line-height:1.5}.profileline{padding:12px 0;border-bottom:1px solid #273729}.profileline:last-child{border-bottom:0}.profileline span{color:var(--muted);font-size:12px}.profileline b{float:right;font-size:13px}
+@media(min-width:541px){body{padding:14px 0}.app{border:1px solid #1b2b1c;border-radius:28px;min-height:calc(100vh - 28px);overflow:hidden}.bottomnav{bottom:14px;border-radius:0 0 28px 28px}}
+</style>
+</head>
+<body>
+<main class="app" id="ainexbit-app">
+  <header class="top">
+    <div class="brand"><div class="logo">N</div><div>AiNex<span>Bit</span></div></div>
+    <div class="pill">✦ REWARDS DEMO</div>
+  </header>
+
+  <section class="view active" id="overview">
+    <div class="feature"><div class="orb">✦</div><div><b>Welcome to AiNexBit</b><small>Complete tasks. Collect points. Explore rewards.</small></div></div>
+    <div class="card">
+      <div class="row"><span class="eyebrow">TOTAL DEMO BALANCE</span><span class="pill">● Demo</span></div>
+      <div class="balance"><span id="balance">1250</span><small> pts</small></div>
+      <div class="sub">Demo points only · Not real USDT or cash</div>
+      <div class="actions"><button class="btn primary" data-go="tasks">⌁ View Tasks</button><button class="btn" data-go="withdraw">↗ Reward Request</button></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b id="completedCount">0</b><span>Tasks done</span></div>
+      <div class="stat"><b id="refCount">0</b><span>Referrals</span></div>
+      <div class="stat"><b id="pendingCount">0</b><span>Requests</span></div>
+    </div>
+    <div class="sectionhead"><h2>Featured tasks</h2><span data-go="tasks">See all →</span></div>
+    <div class="card" id="featuredTasks"></div>
+    <div class="note">This is a front-end demo. Points are stored only in this page session and are not linked to a real account.</div>
+  </section>
+
+  <section class="view" id="tasks">
+    <div class="sectionhead"><h2>🎯 Available Tasks</h2><span>Earn demo points</span></div>
+    <div class="card" id="taskList"></div>
+    <p class="mini">Only complete tasks you can verify honestly. Real Telegram membership verification requires a secure backend and bot permissions.</p>
+  </section>
+
+  <section class="view" id="referral">
+    <div class="sectionhead"><h2>👥 Invite friends</h2><span>Referral</span></div>
+    <div class="card">
+      <div class="orb" style="margin:0 auto 14px">↗</div>
+      <div style="text-align:center;font-weight:850;font-size:18px">Grow your community</div>
+      <p class="sub" style="text-align:center;line-height:1.5">In a live version, each user will receive a unique referral link. This demo shows how the referral page can look.</p>
+      <div class="formrow"><label>Demo referral code</label><input id="refCode" value="AINEX-DEMO" readonly></div>
+      <button class="btn primary" style="width:100%" id="copyDemo">Copy demo code</button>
+      <div class="note" style="margin-top:12px">Demo only: no actual invitation is tracked and no referral reward is paid.</div>
+    </div>
+  </section>
+
+  <section class="view" id="withdraw">
+    <div class="sectionhead"><h2>↗ Reward request</h2><span>Demo form</span></div>
+    <div class="card">
+      <div class="row"><div><div class="eyebrow">AVAILABLE DEMO POINTS</div><div class="balance" style="font-size:30px"><span id="withdrawBalance">1250</span><small> pts</small></div></div></div>
+      <form id="withdrawForm">
+        <div class="formrow"><label>Reward method</label><select id="method"><option>Demo review only</option><option>USDT (not connected)</option></select></div>
+        <div class="formrow"><label>Points to request</label><input id="amount" type="number" min="100" step="1" placeholder="Minimum 100 demo points" required></div>
+        <div class="formrow"><label>Note (optional)</label><input id="wallet" maxlength="80" placeholder="No wallet details needed in demo"></div>
+        <button class="btn primary" type="submit" style="width:100%">Submit demo request</button>
+      </form>
+      <div class="note" style="margin-top:12px">This form does not send money, connect a wallet, or submit a real withdrawal.</div>
+    </div>
+    <div class="sectionhead"><h2>Request history</h2></div><div class="card" id="requestList"><div class="empty">No requests yet.</div></div>
+  </section>
+
+  <section class="view" id="profile">
+    <div class="sectionhead"><h2>👤 Profile</h2><span>Account</span></div>
+    <div class="card">
+      <div class="row" style="margin-bottom:16px"><div class="orb">A</div><div style="flex:1"><b>AiNexBit Member</b><div class="sub" id="userStatus">Preview user · Not authenticated</div></div></div>
+      <div class="profileline"><span>Account type</span><b>Demo</b></div>
+      <div class="profileline"><span>Demo points</span><b id="profileBalance">1250 pts</b></div>
+      <div class="profileline"><span>Completed tasks</span><b id="profileTasks">0</b></div>
+      <div class="profileline"><span>Referral code</span><b>AINEX-DEMO</b></div>
+      <button class="btn" id="resetDemo" style="width:100%;margin-top:16px">Reset demo progress</button>
+    </div>
+    <div class="note">When integrated into Telegram, validate Telegram Mini App initData on the server. Never trust user ID or balance values sent only by the browser.</div>
+  </section>
+
+  <nav class="bottomnav" aria-label="Main navigation">
+    <button class="navbtn active" data-view="overview"><span class="ico">⌂</span>Overview</button>
+    <button class="navbtn" data-view="tasks"><span class="ico">▣</span>Tasks</button>
+    <button class="navbtn" data-view="referral"><span class="ico">♧</span>Referral</button>
+    <button class="navbtn" data-view="withdraw"><span class="ico">↗</span>Rewards</button>
+    <button class="navbtn" data-view="profile"><span class="ico">☻</span>Profile</button>
+  </nav>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</main>
+<script>
+(function(){
+const root=document.getElementById('ainexbit-app');
+if(root.dataset.ready)return;root.dataset.ready='1';
+let balance=1250,completed=new Set(),requests=[],referrals=0;
+const tasks=[
+ {id:'channel',icon:'✈',title:'Visit Telegram channel',desc:'Open the official channel (demo)',points:100},
+ {id:'daily',icon:'☀',title:'Daily check-in',desc:'Claim your daily demo points',points:50},
+ {id:'learn',icon:'◈',title:'Explore AiNexBit',desc:'Read the project introduction',points:75},
+ {id:'community',icon:'♧',title:'Community task',desc:'Preview a community activity',points:125}
+];
+const $=id=>document.getElementById(id);
+function toast(msg){const el=$('toast');el.textContent=msg;el.style.display='block';clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.style.display='none',2400)}
+function taskMarkup(t){const done=completed.has(t.id);return `<div class="task"><div class="taskicon">${t.icon}</div><div class="tasktext"><b>${t.title}</b><small>${t.desc}</small></div><div style="text-align:right"><div class="reward">+${t.points} pts</div><button class="btn ${done?'':'primary'}" data-task="${t.id}" ${done?'disabled':''}>${done?'Claimed':'Claim'}</button></div></div>`}
+function renderTasks(){$('taskList').innerHTML=tasks.map(taskMarkup).join('');$('featuredTasks').innerHTML=tasks.slice(0,2).map(taskMarkup).join('');}
+function render(){ $('balance').textContent=balance.toLocaleString();$('withdrawBalance').textContent=balance.toLocaleString();$('profileBalance').textContent=balance.toLocaleString()+' pts';$('completedCount').textContent=completed.size;$('profileTasks').textContent=completed.size;$('refCount').textContent=referrals;$('pendingCount').textContent=requests.length;renderTasks();$('requestList').innerHTML=requests.length?requests.map((r,i)=>`<div class="task"><div class="taskicon">◷</div><div class="tasktext"><b>Request #${i+1}</b><small>${r.method} · ${r.date}</small></div><div class="reward">${r.amount} pts<br><span style="color:var(--muted)">Demo pending</span></div></div>`).join(''):'<div class="empty">No requests yet.</div>'}
+function showView(name){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===name));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.view===name));}
+root.addEventListener('click',e=>{const go=e.target.closest('[data-go]');if(go){showView(go.dataset.go);return}const nav=e.target.closest('[data-view]');if(nav){showView(nav.dataset.view);return}const claim=e.target.closest('[data-task]');if(claim){const t=tasks.find(x=>x.id===claim.dataset.task);if(!t||completed.has(t.id))return;completed.add(t.id);balance+=t.points;render();toast('Demo points claimed: +'+t.points);return}});
+$('withdrawForm').addEventListener('submit',e=>{e.preventDefault();const amount=Number($('amount').value);if(!Number.isFinite(amount)||amount<100){toast('Enter at least 100 demo points');return}if(amount>balance){toast('Not enough demo points');return}requests.push({amount,method:$('method').value,date:new Date().toLocaleString()});$('amount').value='';$('wallet').value='';render();toast('Demo request added to this page')});
+$('copyDemo').addEventListener('click',()=>{const field=$('refCode');field.focus();field.select();toast('Demo code selected — copy it manually')});
+$('resetDemo').addEventListener('click',()=>{balance=1250;completed=new Set();requests=[];referrals=0;render();toast('Demo progress reset')});
+render();
+})();
+</script>
+</body>
+</html>
